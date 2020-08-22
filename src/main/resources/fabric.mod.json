@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "durability_banks",
+  "version": "${version}",
+  "name": "Durability Banks",
+  "description": "Powerbanks for Minecraft items.",
+  "authors": [
+    "dzwdz"
+  ],
+  "contact": {},
+  "license": "MPL-2.0",
+  "icon": "assets/durability_banks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dzwdz.durability_banks.EntryPoint"
+    ]
+  },
+  "mixins": [
+    "durability_banks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.2+build.206",
+    "fabric": "*",
+    "minecraft": "1.16.1"
+  }
+}
