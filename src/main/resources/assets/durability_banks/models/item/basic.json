@@ -1,6 +1,20 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "durability_banks:item/basic"
-  }
+    "layer0": "durability_banks:item/basic1"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0.5
+      },
+      "model": "durability_banks:item/basic_damaged"
+    },
+    {
+      "predicate": {
+        "damage": 1
+      },
+      "model": "durability_banks:item/basic_empty"
+    }
+  ]
 }
