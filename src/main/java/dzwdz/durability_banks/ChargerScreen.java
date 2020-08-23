@@ -9,8 +9,10 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import static net.minecraft.util.math.MathHelper.ceil;
+
 public class ChargerScreen extends HandledScreen<ScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier("minecraft", "textures/gui/container/hopper.png");
+    private static final Identifier TEXTURE = new Identifier(EntryPoint.MODID, "textures/gui/container/charger.png");
     ChargerScreenHandler screenHandler;
 
     public ChargerScreen(ScreenHandler handler, PlayerInventory inventory, Text title) {
@@ -29,7 +31,10 @@ public class ChargerScreen extends HandledScreen<ScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        drawCenteredString(matrices, textRenderer, Integer.toString(screenHandler.getCharge()), this.x + 87, this.y + 23, 0x0000ff);
+        int barHeight = ceil(screenHandler.getCharge()/100.*12.);
+        if (barHeight > 3) barHeight++;
+        if (barHeight > 10) barHeight++;
+        drawTexture(matrices, x + 85, y + 35 - barHeight, 0, backgroundHeight + 14 - barHeight, 6, barHeight);
     }
 
     @Override
