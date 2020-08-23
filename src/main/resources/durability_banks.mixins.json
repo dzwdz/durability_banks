@@ -4,7 +4,8 @@
   "package": "dzwdz.durability_banks.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "EnchantmentMixin"
   ],
   "injectors": {
     "defaultRequire": 1
