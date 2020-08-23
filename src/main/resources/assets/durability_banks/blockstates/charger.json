@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "durability_banks:block/charger" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "durability_banks:block/charger_side",
+    "north": "durability_banks:block/charger_side",
+    "south": "durability_banks:block/charger_side",
+    "east": "durability_banks:block/charger_side",
+    "west": "durability_banks:block/charger_side",
+    "up": "minecraft:block/furnace_top",
+    "down": "minecraft:block/furnace_top"
+  }
+}
