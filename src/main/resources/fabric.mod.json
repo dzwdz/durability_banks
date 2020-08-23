@@ -14,6 +14,9 @@
   "entrypoints": {
     "main": [
       "dzwdz.durability_banks.EntryPoint"
+    ],
+    "client": [
+      "dzwdz.durability_banks.ClientEntryPoint"
     ]
   },
   "mixins": [
