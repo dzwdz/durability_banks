@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -20,6 +21,23 @@ public class ChargerBlockEntity extends BlockEntity implements ImplementedInvent
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
 
     private int charge = 0;
+
+    private final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            return charge;
+        }
+
+        @Override
+        public void set(int index, int value) {
+            charge = value;
+        }
+
+        @Override
+        public int size() {
+            return 1;
+        }
+    };
 
     public ChargerBlockEntity() {
         super(EntryPoint.CHARGER_BLOCK_ENTITY);
@@ -51,7 +69,7 @@ public class ChargerBlockEntity extends BlockEntity implements ImplementedInvent
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new ChargerScreenHandler(syncId, inv, this);
+        return new ChargerScreenHandler(syncId, inv, this, propertyDelegate);
     }
 
     @Override

@@ -5,37 +5,43 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class ChargerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    PropertyDelegate propertyDelegate;
 
     public ChargerScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(2));
+        this(syncId, playerInventory, new SimpleInventory(2), new ArrayPropertyDelegate(1));
     }
 
-    public ChargerScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+    public ChargerScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
         super(EntryPoint.CHARGER_SCREEN_HANDLER, syncId);
         checkSize(inventory, 2);
         this.inventory = inventory;
+        this.propertyDelegate = propertyDelegate;
 
         inventory.onOpen(playerInventory.player);
+
+        this.addProperties(propertyDelegate);
 
         int m;
         int l;
         for (l = 0; l < 2; ++l) {
-            this.addSlot(new Slot(inventory, l, 62 + l * 36, 35));
+            this.addSlot(new Slot(inventory, l, 62 + l * 36, 20));
         }
 
-        for (m = 0; m < 3; ++m) {
-            for (l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, 84 + m * 18));
+        for(m = 0; m < 3; ++m) {
+            for(l = 0; l < 9; ++l) {
+                this.addSlot(new Slot(playerInventory, l + m * 9 + 9, 8 + l * 18, m * 18 + 51));
             }
         }
 
-        for (m = 0; m < 9; ++m) {
-            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
+        for(m = 0; m < 9; ++m) {
+            this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 109));
         }
 
     }
@@ -68,5 +74,9 @@ public class ChargerScreenHandler extends ScreenHandler {
         }
 
         return newStack;
+    }
+
+    public int getCharge() {
+        return propertyDelegate.get(0);
     }
 }
