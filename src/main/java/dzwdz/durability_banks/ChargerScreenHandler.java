@@ -14,6 +14,9 @@ public class ChargerScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     PropertyDelegate propertyDelegate;
 
+    private int BANK_SLOT = 0;
+    private int FUEL_SLOT = 1;
+
     public ChargerScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(2), new ArrayPropertyDelegate(1));
     }
@@ -62,8 +65,14 @@ public class ChargerScreenHandler extends ScreenHandler {
                 if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(originalStack, 0, this.inventory.size(), false)) {
-                return ItemStack.EMPTY;
+            } else {
+                boolean inserted = false;
+                for (int i = 0; i < 2; i++) {
+                    if (ChargerBlockEntity._isValid(i, originalStack)) {
+                        inserted = insertItem(originalStack, i, i + 1, false);
+                    }
+                }
+                if (!inserted) return ItemStack.EMPTY;
             }
 
             if (originalStack.isEmpty()) {
