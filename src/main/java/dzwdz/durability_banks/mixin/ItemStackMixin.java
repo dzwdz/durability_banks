@@ -24,10 +24,13 @@ public abstract class ItemStackMixin {
     public void hijackDamage(int amount, Random random, @Nullable ServerPlayerEntity player, CallbackInfoReturnable callbackInfoReturnable) {
         if (this.getItem() instanceof DurabilityBank) return;
 
-        ItemStack bank = EntryPoint.getActiveDurabilityBank(player, amount);
+        int cost = amount;
+        if (this.getItem().isIn(EntryPoint.EXPENSIVE)) cost *= 2;
+
+        ItemStack bank = EntryPoint.getActiveDurabilityBank(player, cost);
         if (bank == null) return;
 
-        bank.setDamage(bank.getDamage() + amount);
+        bank.setDamage(bank.getDamage() + cost);
         callbackInfoReturnable.setReturnValue(false);
     }
 }

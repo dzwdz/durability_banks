@@ -24,6 +24,8 @@ public class EntryPoint implements ModInitializer {
     public static BlockEntityType<ChargerBlockEntity> CHARGER_BLOCK_ENTITY;
     public static final ScreenHandlerType<ChargerScreenHandler> CHARGER_SCREEN_HANDLER = ScreenHandlerRegistry.registerSimple(CHARGER, ChargerScreenHandler::new);
 
+    public static final Tag<Item> EXPENSIVE = TagRegistry.item(new Identifier(MODID, "expensive"));
+
     public static final Tag<Item> FUEL = TagRegistry.item(new Identifier(MODID, "fuel"));
     public static final int FUEL_POWER = 100;
 
