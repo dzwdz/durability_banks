@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    " G ",
+    "IBI"
+  ],
+  "key": {
+    "G": {
+      "tag": "durability_banks:glass"
+    },
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "durability_banks:basic_empty",
+    "count": 1
+  }
+}
+

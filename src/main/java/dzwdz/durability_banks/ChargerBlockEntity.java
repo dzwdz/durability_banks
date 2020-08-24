@@ -2,6 +2,7 @@ package dzwdz.durability_banks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -76,13 +77,18 @@ public class ChargerBlockEntity extends BlockEntity implements ImplementedInvent
     public void tick() {
         if (charge <= 0) {
             ItemStack fuel = items.get(1);
-            int power = EntryPoint.getFuelPower(fuel.getItem());
-            if (power > 0) {
+            if (fuel.getItem().isIn(EntryPoint.FUEL)) {
                 fuel.decrement(1);
-                charge += power;
+                charge += EntryPoint.FUEL_POWER;
             }
         } else {
             ItemStack bank = items.get(0);
+            // i'm pretty sure i shouldn't do that this way
+            if (bank.getItem() instanceof EmptyDurabilityBank) {
+                bank = new ItemStack(((EmptyDurabilityBank)bank.getItem()).base);
+                bank.setDamage(bank.getMaxDamage());
+                items.set(0, bank);
+            }
             if (bank.getItem() instanceof DurabilityBank && bank.getDamage() > 0) {
                 bank.setDamage(bank.getDamage() - 1);
                 charge -= 1;

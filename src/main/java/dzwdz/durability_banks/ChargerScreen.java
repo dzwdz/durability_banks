@@ -31,7 +31,7 @@ public class ChargerScreen extends HandledScreen<ScreenHandler> {
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        int barHeight = ceil(screenHandler.getCharge()/100.*12.);
+        int barHeight = ceil(screenHandler.getCharge()*12./EntryPoint.FUEL_POWER);
         if (barHeight > 3) barHeight++;
         if (barHeight > 10) barHeight++;
         drawTexture(matrices, x + 85, y + 35 - barHeight, 0, backgroundHeight + 14 - barHeight, 6, barHeight);
