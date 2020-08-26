@@ -1,0 +1,5 @@
+{
+  "item.durability_banks.basic": "耐久储罐",
+  "item.durability_banks.basic_empty": "空耐久储罐",
+  "block.durability_banks.charger": "耐久充能器"
+}
